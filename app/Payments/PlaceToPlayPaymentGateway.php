@@ -78,7 +78,10 @@ class PlaceToPlayPaymentGateway  implements PaymentGateway
         ];
         $this->request($request);
         if ($this->success()) {
-            $order->update(['request_id' => $this->getReferencePayment()]);
+            $order->update([
+                'request_id' => $this->getReferencePayment(),
+                'url_payment' => $this->processUrl()
+            ]);
         }        
         return $this;
     }

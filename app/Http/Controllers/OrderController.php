@@ -33,25 +33,25 @@ class OrderController extends Controller
             'customer_email' => $request->user()->email,
             'customer_name' => $request->user()->name,
             'customer_mobile' => $request->user()->phone,
-            'status' => 'CREATED',
+            'status' => config('payment.states.initial'),
             'comments' => $request->get('comments'),
             'user_id' => $request->user()->id,
             'total' => $this->getTotal($products)
         ]);
-        $order->details()->createMany($products);       
+        $order->details()->createMany($products);
         if ($this->gateway->makePayment($order)->success()) {
             DB::commit();
             return  Inertia::location($this->gateway->processUrl());
         }
         Log::error($this->gateway->message());
-        session()->flash('error_payment',  $this->gateway->message().', intente mas tarde.');
+        session()->flash('error_payment',  $this->gateway->message() . '.');
         DB::rollBack();
         return  redirect()->back();
     }
 
     public function show(Order $order, Request $request)
     {
-        if ($order->status == "CREATED") {
+        if (in_array($order->status,[config('payment.states.initial'),config('payment.states.restart')] )) {
             $response = $this->gateway->getStatusPayment($order->request_id);
             if (in_array($response['status'], array_keys(config('payment.states.gateway')))) {
                 session()->flash('payment_response', $response['message']);
@@ -79,9 +79,19 @@ class OrderController extends Controller
             })->toArray();
     }
 
-    public function reTryPayment()
+    public function reTryPayment(Order $order)
     {
+        if ($order->status!=config('payment.states.restart')) {
+            abort(401);
+        }
+        if ($this->gateway->makePayment($order)->success()) {
+            return  Inertia::location($this->gateway->processUrl());
+        }
+        Log::error($this->gateway->message());
+        session()->flash('payment_response',  $this->gateway->message() . '.');
+        return  redirect()->back();
     }
+
     public function getTotal(array $products)
     {
         return  array_reduce($products, fn ($carry, $item) => $carry + $item['price'] * $item['quantity'], 0);

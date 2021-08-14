@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',  [ProductController::class,'listProducts'])->name('home');
 Route::get('/checkout',  [CheckoutController::class,'index'])->name('checkout');
 Route::resource('order', OrderController::class)->middleware('auth');
+Route::get('restartPayment/{order}',[ OrderController::class,'reTryPayment'])->name('restartPayment')->middleware('auth');
 
 
 

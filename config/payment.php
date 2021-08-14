@@ -19,25 +19,23 @@ return [
         ],
         'system' => [
             //name and color key are required 
-            'PENDING'=>[
-                'name'=>'Pendiente',
-                'color'=>'warning'
-            ], 
-            'PAYED'=>[
-                'name'=>'Pagado',
-                'color'=>'success'
-            ], 
-            'REJECTED'=>[
-                'name'=>'Rechazado',
-                'color'=>'danger'
-            ], 
-            'CREATED'=>[
-                'name'=>'Creada',
-                'color'=>'light'
-            ]
-        ]
-
-
+            'PENDING' => [
+                'name' => 'Pendiente',
+                'color' => 'warning'
+            ],
+            'PAYED' => [
+                'name' => 'Pagado',
+                'color' => 'success'
+            ],
+            'REJECTED' => [
+                'name' => 'Rechazado',
+                'color' => 'danger'
+            ],
+        ],
+        'initial'=>'PENDING',// initial stage when create order
+        'retry' =>  'PENDING', // before payment request rejected
+        'restart'=> 'REJECTED' //state to restart new payment request 
     ],
+
     'currency' => env('PAYMENT_CURRENCY', 'COP'),
 ];

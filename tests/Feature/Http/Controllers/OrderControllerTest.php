@@ -55,7 +55,7 @@ class OrderControllerTest extends TestCase
             'customer_email' =>$user->email,
             'customer_name' =>$user->name,
             'customer_mobile' =>$user->phone,
-            'status' => 'CREATED',
+            'status' => config('payment.states.initial'),
             'comments' => 'dummy comment',
             'user_id' =>$user->id,
             'total' => 10000
@@ -70,5 +70,61 @@ class OrderControllerTest extends TestCase
             ->assertStatus(409);//redirect to payment gateway url
 
         $this->assertDatabaseHas('orders',$order);
+    }
+
+    public function test_index_order()
+    {
+        $user=User::factory()->create();
+        $user->orders()->create([
+            'customer_email' =>$user->email,
+            'customer_name' =>$user->name,
+            'customer_mobile' =>$user->phone,
+            'status' => config('payment.states.initial'),
+            'comments' => 'dummy comment',
+            'user_id' =>$user->id,
+            'total' => 10000
+        ]);
+
+        $this
+        ->actingAs($user)
+        ->get('order')
+        ->assertStatus(200)
+        ->assertSee(config('payment.states.initial'));
+
+    }
+    public function test_only_orders_with_restart_state_can_restart_payment()
+    {
+        $user=User::factory()->create();
+        $order=$user->orders()->create([
+            'customer_email' =>$user->email,
+            'customer_name' =>$user->name,
+            'customer_mobile' =>$user->phone,
+            'status' => config('payment.states.initial'),
+            'comments' => 'dummy comment',
+            'user_id' =>$user->id,
+            'total' => 10000
+        ]);
+        $this
+        ->actingAs($user)
+        ->get('restartPayment/'.$order->id)
+        ->assertStatus(401);
+    }
+    public function test_restartpayment()
+    {
+        $user=User::factory()->create();
+        $order=$user->orders()->create([
+            'customer_email' =>$user->email,
+            'customer_name' =>$user->name,
+            'customer_mobile' =>$user->phone,
+            'status' => config('payment.states.restart'),
+            'comments' => 'dummy comment',
+            'user_id' =>$user->id,
+            'total' => 10000
+        ]);
+
+        $this
+        ->actingAs($user)
+        ->get('restartPayment/'.$order->id)
+        ->assertStatus(409);//redirect to payment gateway url
     }
 }

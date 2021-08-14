@@ -24,7 +24,7 @@ class ProductFactory extends Factory
         return [
             'name'=>$this->faker->name(),
             'description'=>$this->faker->sentence(4),
-            'price'=>$this->faker->randomNumber(4),
+            'price'=>$this->faker->randomNumber(5),
             'img'=>$this->faker->image('public/storage/images',640,480, null, false),
         ];
     }

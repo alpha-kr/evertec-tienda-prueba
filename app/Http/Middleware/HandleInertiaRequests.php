@@ -45,7 +45,9 @@ class HandleInertiaRequests extends Middleware
                 'payment_response' => fn () => $request->session()->get('payment_response'),
             ],
             'payment'=>[
-                'states'=>config('payment.states.system')
+                'states'=>config('payment.states.system'),
+                'retry'=>config('payment.states.retry'),
+                'restart'=>config('payment.states.restart')
             ]
         ]);
     }

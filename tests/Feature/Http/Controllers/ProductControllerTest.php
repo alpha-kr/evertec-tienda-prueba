@@ -8,15 +8,17 @@ use Tests\TestCase;
 
 class ProductControllerTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_example()
+    public function test_index()
     {
-        // $response = $this->get('/');
 
-        // $response->assertStatus(200);
+        $this
+            ->get('/checkout')
+            ->assertStatus(200);
     }
 }

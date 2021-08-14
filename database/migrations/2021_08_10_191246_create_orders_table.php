@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_email',120);
             $table->string('customer_mobile',40);
             $table->text('comments')->nullable();
+            $table->text('url_payment')->nullable();
             $table->decimal('total')->unsigned();
             $table->string('status',20);
             $table->timestamps();

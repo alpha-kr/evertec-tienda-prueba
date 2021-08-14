@@ -35,4 +35,8 @@ class PaymentTest extends TestCase
             $this->assertTrue(in_array(['name','color'], array_keys($colorNameArray))); 
         }
     }
+    public function test_initial_status_diferent_restart_status()
+    {
+         $this->assertTrue( config('payment.states.restart')!=config('payment.states.initial'));
+    }
 }

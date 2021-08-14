@@ -88,11 +88,8 @@
                                 <div class="row mb-0 mt-2">
 
                                     <div class="col-12">
-
-                                        <button class="btn   btn-lg float-center mb-4 btn-block p-3 m-0 checkout" :class="{'btn-warning':order.status=='PENDING'}" type="submit">
-
-                                             
-                                        </button>
+                                        <ButtonOrder :order="order" />
+                                        
                                     </div>
 
                                 </div>
@@ -110,6 +107,7 @@
 <script>
 import Layout from "@/Pages/home.vue";
 import AlertOrder from "@/Pages/AlertOrder";
+import ButtonOrder from "@/Pages/ButtonOrder";
 import { computed } from "vue";
 import {  usePage } from "@inertiajs/inertia-vue3";
 import BadgeOrder from "@/Pages/BadgeOrder";
@@ -118,7 +116,8 @@ export default {
     layout: Layout,
     components:{
         AlertOrder,
-        BadgeOrder
+        BadgeOrder,
+        ButtonOrder
     },
     props: {
         order: Object,
