@@ -1,5 +1,5 @@
 # evertec-tienda-prueba
-pruba tecnica empresa evertec
+pruba tecnica empresa evertec, se desarrollo una SPA  que se integra con la pasarela de pagos place to pay utilizando las siguientes tenologias, Laravel, vue 3, intertial, voyager y php unit.
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -9,29 +9,27 @@ pruba tecnica empresa evertec
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Instalacion
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
 ## Variables de entorno
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ ```php
+ #Payment variebles
+PAYMENT_LOGIN=6dd490faf9cb87a9862245da41170ff2
+PAYMENT_TRANKEY=024h1IlD
+PAYMENT_URL=https://dev.placetopay.com/redirection
+PAYMENT_REST_TIME_OUT=45
+PAYMENT_REST_CONNECT_OUT=30
+ 
+ ```
 
 ## Configuracion
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+En el Archivo payment.php se encuentras las siguientes variables de configuracion 
+## Instalacion
+- composer install, cp .env.example .env .
+- Intallar voyager:php artisan voyager:install.
+- crear usuario administrador php artisan voyager:admin admin@admin.com --create .
+- contraseña:admin123456 .
+- Correr seeders.
 
  
 ## License

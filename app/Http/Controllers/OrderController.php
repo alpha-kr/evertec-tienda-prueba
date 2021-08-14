@@ -38,14 +38,14 @@ class OrderController extends Controller
             'user_id' => $request->user()->id,
             'total' => $this->getTotal($products)
         ]);
-        $order->details()->createMany($products);
-        DB::commit();
-
+        $order->details()->createMany($products);       
         if ($this->gateway->makePayment($order)->success()) {
+            DB::commit();
             return  Inertia::location($this->gateway->processUrl());
         }
         Log::error($this->gateway->message());
-        session()->flash('error_payment',  $this->gateway->message());
+        session()->flash('error_payment',  $this->gateway->message().', intente mas tarde.');
+        DB::rollBack();
         return  redirect()->back();
     }
 

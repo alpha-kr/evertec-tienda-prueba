@@ -11,6 +11,9 @@
                                 {{paymentResponse}}
                             </AlertOrder>
                             <div class="container">
+                                <div class="container">
+                                    <p for=""><strong>su comentario :</strong> {{order.comments??'No escribio nada durante la orden'}}</p>
+                                </div>
                                 <div class="container mt-5 pb-3 ml-3">
                                     <div v-for="(detail,index) in order.details" :key="index" class="bg-light p-3
                                     pt-0 mb-3" style="max-height: 250px !important; overflow-y: auto !important;">
