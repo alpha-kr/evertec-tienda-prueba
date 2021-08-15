@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Inertia\Testing\Assert;
 
 class OrderControllerTest extends TestCase
 {
@@ -75,21 +76,24 @@ class OrderControllerTest extends TestCase
     public function test_index_order()
     {
         $user=User::factory()->create();
-        $user->orders()->create([
-            'customer_email' =>$user->email,
-            'customer_name' =>$user->name,
-            'customer_mobile' =>$user->phone,
-            'status' => config('payment.states.initial'),
-            'comments' => 'dummy comment',
-            'user_id' =>$user->id,
-            'total' => 10000
-        ]);
+        $orders=Order::factory()->create(['user_id'=>$user->id]);
 
         $this
         ->actingAs($user)
         ->get('order')
         ->assertStatus(200)
-        ->assertSee(config('payment.states.initial'));
+        ->assertInertia(
+            fn (Assert $page) =>
+            $page
+                ->component('Orders')
+                ->has('orders',1,fn(Assert $page)=>
+                    $page->where('id',$orders->id)
+                     ->where('total',$orders->total."")
+                     ->where('status',$orders->status)
+                     ->where('created_at',$orders->created_at->format('Y-m-d H:i'))
+                     ->etc()
+                )
+        );
 
     }
     public function test_only_orders_with_restart_state_can_restart_payment()

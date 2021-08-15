@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Inertia\Testing\Assert;
 
 class CheckoutControllerTest extends TestCase
 {
@@ -17,9 +16,13 @@ class CheckoutControllerTest extends TestCase
      */
     public function test_index()
     {
-
         $this
             ->get('/checkout')
-            ->assertStatus(200);
+            ->assertStatus(200)
+            ->assertInertia(
+                fn (Assert $page) =>
+                $page
+                    ->component('checkout')
+            );
     }
 }

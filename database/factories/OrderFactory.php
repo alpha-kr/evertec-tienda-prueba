@@ -29,7 +29,7 @@ class OrderFactory extends Factory
             'customer_email'=>$this->faker->email(),
             'customer_mobile'=>$this->faker->phoneNumber(),
             'comments'=>$this->faker->sentence(),
-            'status'=>$this->faker->sentence(),
+            'status'=> config('payment.states.initial'),
             'total'=>$this->faker->randomNumber(6)
         ];
     }
