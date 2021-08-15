@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(PaymentGateway::class,PlaceToPlayPaymentGateway::class );
+
+        $this->app->singleton('VoyagerGuard', function () {
+            return 'admin';
+        });
     }
 
     /**

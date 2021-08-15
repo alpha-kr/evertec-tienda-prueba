@@ -140,8 +140,7 @@ export default {
                 return error("El carrito debe estar lleno");
             }
             form.post("/order",{
-                onError:(e)=>console.log(e)
-                
+                onError:(e)=>global.cartState.cart.clearCart()
             });
         }
 
