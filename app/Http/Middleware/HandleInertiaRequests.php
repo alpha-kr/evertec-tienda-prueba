@@ -47,7 +47,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'payment'=>[
                 'states'=>config('payment.states.system'),
-                'retry'=>config('payment.states.retry'),
+                'retry'=>config('payment.states.initial'),
                 'restart'=>config('payment.states.restart')
             ]
         ]);

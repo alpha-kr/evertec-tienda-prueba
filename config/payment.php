@@ -33,7 +33,6 @@ return [
             ],
         ],
         'initial'=>'PENDING',// initial stage when create order
-        'retry' =>  'PENDING', // before payment request rejected
         'restart'=> 'REJECTED' //state to restart new payment request 
     ],
 
