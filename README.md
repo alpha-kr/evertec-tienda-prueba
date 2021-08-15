@@ -104,7 +104,7 @@ Estas Variblas intengran los estados de la pasarela de pagos junto a las del sis
 ### creacion de administrador 
 - Intallar voyager:php artisan voyager:install.
 - crear usuario administrador php artisan voyager:admin  {correo} --create .
-<img src="commando.png" alt="License">
+<img src="comando.png" alt="License">
 - Correr seeders php artisan db:seed este comando creara el modulo de ordenes y el producto con el cual se podra realizar ordenes.
 
  
