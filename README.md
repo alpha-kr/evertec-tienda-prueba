@@ -91,7 +91,34 @@ Son las variables correspondientes a la autenticacion con la pasarela de pago.
 ```
 
 ### states
-Estas Variblas intengran los estados de la pasarela de pagos junto a las del sistema, en este proyecto una orden solo puede tener 3 estados los cuales son PENDING,PAYED,REJECTED definidas en la llave states.system, las variebles de estado del sistema pueden tener un color y un nombre, el nombre sera el mostrado al usuario , el color debe pertenecer a los colores de boostrap 4, los siguentes estados son especiales y de cuidado.
+Estas Variblas intengran los estados de la pasarela de pagos junto a las del sistema, en este proyecto una orden solo puede tener 3 estados los cuales son PENDING,PAYED,REJECTED definidas en la llave states.system, las variebles de estado del sistema pueden tener un color y un nombre, el nombre sera el mostrado al usuario , el color debe pertenecer a los colores de boostrap 4.
+
+``` php
+'states' => [
+        //System and gateway values must match
+        'gateway' => [
+            'PENDING' => 'PENDING', //statu
+            'APPROVED' => 'PAYED',
+            'REJECTED' => 'REJECTED',
+        ],
+        'system' => [
+            //name and color key are required 
+            'PENDING' => [
+                'name' => 'Pendiente',
+                'color' => 'warning'
+            ],
+            'PAYED' => [
+                'name' => 'Pagado',
+                'color' => 'success'
+            ],
+            'REJECTED' => [
+                'name' => 'Rechazado',
+                'color' => 'danger'
+            ],
+        ],
+
+```
+ - los siguentes estados son especiales y de cuidado.
 ``` php
         'initial'=>'PENDING',// initial stage when create order
         'restart'=> 'REJECTED' //state to restart new payment request 
@@ -99,13 +126,22 @@ Estas Variblas intengran los estados de la pasarela de pagos junto a las del sis
 - initial: Corresponde al estado inicial de la order y debe coindicir con alguno definido en la llave states.system.
 
 - retry: En caso de que la pasarela  haya rechazado el pago, el estado retry indica en que estado de la order se podra  realizar una nueva peticion a la pasarela de para para intentar pagar por n sima vez.
-## Instalacion
-- composer install, cp .env.example .env .
+## Instalacion de laravel
+- cp .env.example .env .
+- crear base de datos en tu sistema.
+-  composer install
+- php artisan key:generate
 ### creacion de administrador 
-- Intallar voyager:php artisan voyager:install.
-- crear usuario administrador php artisan voyager:admin  {correo} --create .
+#### Intallar voyager
+- php artisan voyager:install, en caso de fallar repetir comando.
+#### crear usuario administrador
+-  php artisan voyager:admin  {correo} --create .
 <img src="comando.png" alt="License">
-- Correr seeders php artisan db:seed este comando creara el modulo de ordenes y el producto con el cual se podra realizar ordenes.
+
+#### correr Seeders
+El siguiente  comando creara el modulo de ordenes en el administrador instalado (voyager) y generara el  producto con el cual se podra realizar ordenes.
+- php artisan db:seed 
+
 
  
 ## License
