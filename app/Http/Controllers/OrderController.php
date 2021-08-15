@@ -41,6 +41,7 @@ class OrderController extends Controller
         $order->details()->createMany($products);
         if ($this->gateway->makePayment($order)->success()) {
             DB::commit();
+            session()->flash('redirected',  true);
             return  Inertia::location($this->gateway->processUrl());
         }
         Log::error($this->gateway->message());

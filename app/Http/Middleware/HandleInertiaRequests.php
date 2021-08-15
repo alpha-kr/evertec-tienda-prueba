@@ -43,6 +43,7 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'error_payment' => fn () => $request->session()->get('error_payment'),
                 'payment_response' => fn () => $request->session()->get('payment_response'),
+                'redirected' => fn () => $request->session()->get('redirected'),
             ],
             'payment'=>[
                 'states'=>config('payment.states.system'),

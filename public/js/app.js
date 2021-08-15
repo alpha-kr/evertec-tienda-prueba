@@ -21168,11 +21168,7 @@ __webpack_require__.r(__webpack_exports__);
         return (0,_alerts__WEBPACK_IMPORTED_MODULE_4__.error)("El carrito debe estar lleno");
       }
 
-      form.post("/order", {
-        onError: function onError(e) {
-          return console.log(e);
-        }
-      });
+      form.post("/order");
     }
 
     return {
@@ -21270,6 +21266,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Pages/footer.vue */ "./resources/js/Pages/footer.vue");
 /* harmony import */ var _Pages_header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/header.vue */ "./resources/js/Pages/header.vue");
 /* harmony import */ var _Pages_brands_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Pages/brands.vue */ "./resources/js/Pages/brands.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
+
 
 
 
@@ -21279,6 +21279,13 @@ __webpack_require__.r(__webpack_exports__);
     headerEcommerce: _Pages_header_vue__WEBPACK_IMPORTED_MODULE_1__.default,
     brands: _Pages_brands_vue__WEBPACK_IMPORTED_MODULE_2__.default,
     footerEcommerce: _Pages_footer_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  setup: function setup() {
+    var global = (0,vue__WEBPACK_IMPORTED_MODULE_3__.inject)("global");
+
+    if ((0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_4__.usePage)().props.value.flash.redirected) {
+      global.clearCart();
+    }
   }
 });
 
@@ -27260,7 +27267,7 @@ var restProduct = function restProduct(product) {
 };
 
 var clearCart = function clearCart() {
-  return localStorage.setItem("cart", JSON.stringify([]));
+  return cartState.cart = [];
 };
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(cartState.cart, function (newCart, oldCart) {

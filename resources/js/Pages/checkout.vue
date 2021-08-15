@@ -139,9 +139,7 @@ export default {
             if (global.cartState.cart.length == 0) {
                 return error("El carrito debe estar lleno");
             }
-            form.post("/order",{
-                onError:(e)=>global.cartState.cart.clearCart()
-            });
+            form.post("/order");
         }
 
         return { form, submit, paymentResponse };

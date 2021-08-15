@@ -31,7 +31,7 @@ const restProduct = (product) => {
     }  
      
 }
-const clearCart=()=>localStorage.setItem("cart", JSON.stringify([]))
+const clearCart=()=>cartState.cart=[]
 
 
 watch(cartState.cart, (newCart,oldCart) => {
