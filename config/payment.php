@@ -32,8 +32,8 @@ return [
                 'color' => 'danger'
             ],
         ],
-        'initial'=>'PENDING',// initial stage when create order
-        'restart'=> 'REJECTED' //state to restart new payment request 
+        'initial'=>'PENDING',// initial stage when order is created
+        'restart'=> 'REJECTED' //state witch indicate  when is enable to do a  new payment request 
     ],
 
     'currency' => env('PAYMENT_CURRENCY', 'COP'),

@@ -66,13 +66,13 @@ return [
                 'color' => 'danger'
             ],
         ],
-        'initial'=>'PENDING',// initial stage when create order
-        'retry' =>  'PENDING', // before payment request rejected
-        'restart'=> 'REJECTED' //state to restart new payment request 
+        'initial'=>'PENDING',// initial stage when order is created
+        'restart'=> 'REJECTED' //state witch indicate  when is enable to do a  new payment request 
     ],
 
     'currency' => env('PAYMENT_CURRENCY', 'COP'),
 ];
+
  
  ```
 ### Auth
@@ -120,12 +120,12 @@ Estas Variblas intengran los estados de la pasarela de pagos junto a las del sis
 ```
  - los siguentes estados son especiales y de cuidado.
 ``` php
-        'initial'=>'PENDING',// initial stage when create order
-        'restart'=> 'REJECTED' //state to restart new payment request 
+        'initial'=>'PENDING',// initial stage when order is created
+        'restart'=> 'REJECTED' //state witch indicate  when is enable to do a  new payment request 
 ```
 - initial: Corresponde al estado inicial de la order y debe coindicir con alguno definido en la llave states.system.
 
-- retry: En caso de que la pasarela  haya rechazado el pago, el estado retry indica en que estado de la order se podra  realizar una nueva peticion a la pasarela de para para intentar pagar por n sima vez.
+- restart: En caso de que la pasarela  haya rechazado el pago, que el usuario   podra  realizar una nueva peticion a la pasarela para   completar el pago previamente rechazado.
 ## Instalacion de laravel
 - cp .env.example .env .
 - crear base de datos en tu sistema.
