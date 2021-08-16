@@ -31,7 +31,7 @@ PAYMENT_REST_CONNECT_OUT=30
 
 ## Configuracion
 
-En el Archivo payment.php se encuentras las variables de autenticacion y de  estados de ordenes.
+En el Archivo payment.php se encuentran las variables de autenticacion y de  estados de ordenes.
  ```php
  <?php
 
@@ -76,7 +76,7 @@ return [
 
  
  ```
-### Auth
+### Llave auth
 Son las variables correspondientes a la autenticacion con la pasarela de pago.
  ```php
 <?php
@@ -91,7 +91,7 @@ Son las variables correspondientes a la autenticacion con la pasarela de pago.
     ],
 ```
 
-### states
+### Llave states
 Estas Variblas intengran los estados de la pasarela de pagos junto a las del sistema, en este proyecto una orden solo puede tener 3 estados los cuales son PENDING,PAYED,REJECTED definidas en la llave states.system, las variebles de estado del sistema pueden tener un color y un nombre, el nombre sera el mostrado al usuario , el color debe pertenecer a los colores de boostrap 4.
 
 ``` php
