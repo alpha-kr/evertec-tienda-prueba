@@ -78,7 +78,7 @@
                                         <h6>Costo de productos:</h6>
                                     </div>
                                     <div class="col-4 ">
-                                        <h5> {{global.totalCart}}</h5>
+                                        <h5> {{global.totalCart.value}}</h5>
                                     </div>
                                 </div>
 
@@ -88,7 +88,7 @@
                                         <h5><strong>&ensp;Total</strong></h5>
                                     </div>
                                     <div class="col-4  pr-3 ">
-                                        <h5><strong id="totalOrder" v-text=global.totalCart> </strong></h5>
+                                        <h5><strong id="totalOrder" v-text=global.totalCart.value> </strong></h5>
                                     </div>
                                 </div>
                                 <div class="row mb-0 mt-2">

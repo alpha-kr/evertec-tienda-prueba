@@ -86,6 +86,7 @@ class OrderController extends Controller
             abort(401);
         }
         if ($this->gateway->makePayment($order)->success()) {
+            session()->flash('redirected',  true);
             return  Inertia::location($this->gateway->processUrl());
         }
         Log::error($this->gateway->message());

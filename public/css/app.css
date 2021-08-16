@@ -1096,9 +1096,6 @@ select {
 .prose > :last-child {
 	margin-bottom: 0;
 }
-.visible {
-	visibility: visible;
-}
 .fixed {
 	position: fixed;
 }
@@ -1384,6 +1381,9 @@ select {
 }
 .cursor-pointer {
 	cursor: pointer;
+}
+.resize {
+	resize: both;
 }
 .list-inside {
 	list-style-position: inside;
@@ -1891,10 +1891,6 @@ select {
 }
 .ring-opacity-5 {
 	--tw-ring-opacity: 0.05;
-}
-.blur {
-	--tw-blur: blur(8px);
-	filter: var(--tw-filter);
 }
 .filter {
 	filter: var(--tw-filter);
