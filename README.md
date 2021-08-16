@@ -9,7 +9,8 @@
 
 # evertec-tienda-prueba
 Prueba tecnica empresa evertec, se desarrollo una SPA  que se integra con la pasarela de pagos place to pay utilizando las siguientes tenologias, Laravel, vue 3, intertial,bootstrap, voyager y php unit.
--Ecommerce
+
+# Tienda
 <img src="home.png" alt="License">
 
 ## Modulo Administrador
